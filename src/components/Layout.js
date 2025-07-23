@@ -43,6 +43,58 @@ const Layout = ({ children, activeModule, onNavigate, user, onLogout }) => {
       >
         <Icon className={`h-5 w-5 mr-3 ${isActive ? 'text-white' : 'text-gray-500'}`} />
         <div className="flex-1">
+          <div className={`font-medium ${isActive ? 'text-white' : 'text-gray-900'}`}>
+            {item.label}
+          </div>
+          <div className={`text-xs ${isActive ? 'text-blue-100' : 'text-gray-500'}`}>
+            {item.description}
+          </div>
+        </div>
+      </button>
+    );
+  };
+
+  return (
+    <div className="flex h-screen bg-gray-50">
+      {/* Desktop Sidebar */}
+      <div className="hidden lg:flex lg:flex-col lg:w-64 lg:bg-white lg:border-r lg:border-gray-200">
+        <div className="flex-1 flex flex-col">
+          {/* Logo */}
+          <div className="p-6 border-b border-gray-200">
+            <h1 className="text-xl font-bold text-gray-900">IntegrateAI Inc.</h1>
+            <p className="text-sm text-gray-600 mt-1">Nonprofit Management</p>
+          </div>
+
+          {/* Navigation */}
+          <nav className="flex-1 p-4 space-y-2">
+            {navigationItems.map((item) => (
+              <NavigationItem key={item.id} item={item} />
+            ))}
+          </nav>
+
+          {/* User Profile */}
+          <div className="p-4 border-t border-gray-200">
+            <div className="flex items-center space-x-3">
+              <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center">
+                <User className="h-5 w-5 text-white" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-medium text-gray-900 truncate">
+                  {user?.name || 'Admin User'}
+                </p>
+                <p className="text-xs text-gray-500 truncate">
+                  {user?.position || user?.role || 'Administrator'}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Sidebar Overlay */}
+      {sidebarOpen && (
+        <div className="lg:hidden fixed inset-0 z-50 flex">
+          <div className="fixed inset-0 bg-gray-600 opacity-75" onClick={() => setSidebarOpen(false)} />
           <div className="relative flex-1 flex flex-col max-w-xs w-full bg-white">
             <div className="absolute top-0 right-0 -mr-12 pt-2">
               <button
@@ -157,56 +209,4 @@ const Layout = ({ children, activeModule, onNavigate, user, onLogout }) => {
   );
 };
 
-export default Layout; className={`font-medium ${isActive ? 'text-white' : 'text-gray-900'}`}>
-            {item.label}
-          </div>
-          <div className={`text-xs ${isActive ? 'text-blue-100' : 'text-gray-500'}`}>
-            {item.description}
-          </div>
-        </div>
-      </button>
-    );
-  };
-
-  return (
-    <div className="flex h-screen bg-gray-50">
-      {/* Desktop Sidebar */}
-      <div className="hidden lg:flex lg:flex-col lg:w-64 lg:bg-white lg:border-r lg:border-gray-200">
-        <div className="flex-1 flex flex-col">
-          {/* Logo */}
-          <div className="p-6 border-b border-gray-200">
-            <h1 className="text-xl font-bold text-gray-900">IntegrateAI Inc.</h1>
-            <p className="text-sm text-gray-600 mt-1">Nonprofit Management</p>
-          </div>
-
-          {/* Navigation */}
-          <nav className="flex-1 p-4 space-y-2">
-            {navigationItems.map((item) => (
-              <NavigationItem key={item.id} item={item} />
-            ))}
-          </nav>
-
-          {/* User Profile */}
-          <div className="p-4 border-t border-gray-200">
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center">
-                <User className="h-5 w-5 text-white" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-gray-900 truncate">
-                  {user?.name || 'Admin User'}
-                </p>
-                <p className="text-xs text-gray-500 truncate">
-                  {user?.position || user?.role || 'Administrator'}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile Sidebar Overlay */}
-      {sidebarOpen && (
-        <div className="lg:hidden fixed inset-0 z-50 flex">
-          <div className="fixed inset-0 bg-gray-600 opacity-75" onClick={() => setSidebarOpen(false)} />
-          <div
+export default Layout;
