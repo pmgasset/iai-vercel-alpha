@@ -4,7 +4,6 @@ import {
   Users, 
   FileText, 
   CheckCircle, 
-  TrendingUp,
   Clock,
   AlertCircle,
   Activity

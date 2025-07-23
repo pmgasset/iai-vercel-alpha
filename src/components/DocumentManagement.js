@@ -1,15 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { 
-  FileText, 
   Upload, 
   Search, 
   Download, 
   Edit, 
   Trash2, 
   Eye,
-  Filter,
-  Calendar,
-  User,
   FolderOpen,
   AlertCircle
 } from 'lucide-react';
@@ -29,7 +25,7 @@ const DocumentManagement = ({ documents: initialDocuments, onDocumentsUpdate }) 
     }
   }, [initialDocuments]);
 
-  const loadDocuments = async () => {
+  const loadDocuments = useCallback(async () => {
     setLoading(true);
     try {
       const params = {};
@@ -47,7 +43,7 @@ const DocumentManagement = ({ documents: initialDocuments, onDocumentsUpdate }) 
     } finally {
       setLoading(false);
     }
-  };
+  }, [categoryFilter, searchTerm, onDocumentsUpdate]);
 
   useEffect(() => {
     const debounceTimer = setTimeout(() => {
@@ -57,7 +53,7 @@ const DocumentManagement = ({ documents: initialDocuments, onDocumentsUpdate }) 
     }, 300);
 
     return () => clearTimeout(debounceTimer);
-  }, [searchTerm, categoryFilter]);
+  }, [searchTerm, categoryFilter, loadDocuments]);
 
   const handleUploadDocument = async (documentData) => {
     try {

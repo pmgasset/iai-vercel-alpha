@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { 
   Calendar, 
-  Clock, 
   Plus, 
-  Users, 
   MapPin, 
   Edit,
-  Trash2,
-  CheckCircle,
   AlertCircle,
   Video
 } from 'lucide-react';
