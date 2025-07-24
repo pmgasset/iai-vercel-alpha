@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { 
   CheckCircle, 
   AlertTriangle, 
@@ -6,7 +6,6 @@ import {
   FileText, 
   Clock,
   Bell,
-  TrendingUp,
   Shield,
   Download,
   Upload,
@@ -16,22 +15,14 @@ import {
   Search,
   Filter,
   ExternalLink,
-  AlertCircle,
-  Info,
   XCircle,
-  DollarSign,
   Users,
-  Building,
-  Archive,
-  BookOpen,
-  Target,
-  MoreVertical
+  Target
 } from 'lucide-react';
 
 const ComplianceManagement = ({ complianceData = [], onComplianceUpdate }) => {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [showAddModal, setShowAddModal] = useState(false);
-  const [selectedDeadline, setSelectedDeadline] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterStatus, setFilterStatus] = useState('all');
 

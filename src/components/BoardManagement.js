@@ -1,19 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { 
   Users, 
   Plus, 
-  Edit3, 
   Calendar, 
   Mail, 
   Phone, 
-  MapPin, 
   AlertCircle, 
   Clock, 
-  Award, 
-  FileText, 
-  Search, 
-  Filter,
-  CheckCircle,
+  Search,
   XCircle,
   MoreVertical,
   UserPlus,
@@ -24,7 +18,6 @@ import {
 const BoardManagement = ({ boardMembers = [], onBoardUpdate }) => {
   const [activeTab, setActiveTab] = useState('directors');
   const [showAddModal, setShowAddModal] = useState(false);
-  const [selectedMember, setSelectedMember] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterRole, setFilterRole] = useState('all');
 
@@ -107,7 +100,7 @@ const BoardManagement = ({ boardMembers = [], onBoardUpdate }) => {
     }
   ]);
 
-  const [committees, setCommittees] = useState([
+  const [committees] = useState([
     {
       id: 1,
       name: 'Executive Committee',
