@@ -105,7 +105,7 @@ const ComplianceManagement = ({ complianceData = [], onComplianceUpdate }) => {
     }
   ]);
 
-  const [complianceAreas, setComplianceAreas] = useState([
+  const [complianceAreas] = useState([
     {
       id: 1,
       name: 'Federal Tax Compliance',
@@ -168,7 +168,7 @@ const ComplianceManagement = ({ complianceData = [], onComplianceUpdate }) => {
     }
   ]);
 
-  const [auditTrail, setAuditTrail] = useState([
+  const [auditTrail] = useState([
     {
       id: 1,
       action: 'Form 990 Draft Completed',

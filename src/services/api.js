@@ -75,7 +75,7 @@ class ApiService {
     return response;
   }
 
-  async logout() {
+  async logoutUser() {
     try {
       await this.request('/auth/logout', { method: 'POST' });
     } catch (error) {
