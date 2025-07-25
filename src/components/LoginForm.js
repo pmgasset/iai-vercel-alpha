@@ -16,7 +16,7 @@ const LoginForm = ({ onLogin }) => {
 
     try {
       // Fix: Pass the entire formData object, not individual parameters
-      const result = await onLogin(formData);
+      await onLogin(formData);
       // onLogin now handles the API call and returns the result
     } catch (err) {
       setError(err.message || 'Login failed. Please try again.');
