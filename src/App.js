@@ -69,6 +69,12 @@ const NonprofitApp = () => {
   const handleLogin = async (credentials) => {
     try {
       setError('');
+      console.log('🔑 Login attempt with credentials:', { 
+        email: credentials.email, 
+        hasPassword: !!credentials.password 
+      });
+      
+      // Call the API with the credentials object
       const response = await api.login(credentials);
       
       if (response.user && response.token) {
@@ -81,12 +87,13 @@ const NonprofitApp = () => {
     } catch (err) {
       const errorMessage = err.message || 'Login failed. Please try again.';
       setError(errorMessage);
-      return { success: false, error: errorMessage };
+      console.error('❌ Login failed:', errorMessage);
+      throw new Error(errorMessage); // Re-throw so LoginForm can handle it
     }
   };
 
   const handleLogout = () => {
-    api.logout();
+    api.logoutUser();
     setUser(null);
     setDashboardData(null);
     setMeetings([]);

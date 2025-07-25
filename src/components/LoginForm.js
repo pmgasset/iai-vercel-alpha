@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { LogIn, Building, AlertCircle } from 'lucide-react';
-import api from '../services/api';
 
 const LoginForm = ({ onLogin }) => {
   const [formData, setFormData] = useState({
@@ -16,10 +15,11 @@ const LoginForm = ({ onLogin }) => {
     setError('');
 
     try {
-      const result = await api.login(formData.email, formData.password);
-      onLogin(result.user);
+      // Fix: Pass the entire formData object, not individual parameters
+      const result = await onLogin(formData);
+      // onLogin now handles the API call and returns the result
     } catch (err) {
-      setError(err.message);
+      setError(err.message || 'Login failed. Please try again.');
     } finally {
       setLoading(false);
     }
